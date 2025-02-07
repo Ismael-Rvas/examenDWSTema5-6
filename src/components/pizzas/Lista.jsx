@@ -11,21 +11,17 @@ export async function Pizzas() {
           className="bg-slate-200 rounded-lg p-4 shadow-md mb-4 w-full md:w-1/2 lg:w-1/3"
         >
           <h2 className="text-2xl font-bold mb-2">
-            <Link
-              href={`/pizzas/${pizza.id}`}
-              className="hover:underline"
-            >
+            <Link href={`/pizzas/${pizza.id}`} className="hover:underline">
               {pizza.nombre}
             </Link>
 
             <p className="text-gray-700 italic">
-            Precio:  
-             {pizza.precio}€
-          </p>
+              Precio:
+              {pizza.precio}€
+            </p>
           </h2>
         </li>
       ))}
     </ul>
   );
 }
-

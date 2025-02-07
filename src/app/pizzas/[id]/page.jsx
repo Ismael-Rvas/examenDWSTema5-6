@@ -32,4 +32,3 @@ async function PaginaPizza({ params, searchParams }) {
 }
 
 export default PaginaPizza;
-

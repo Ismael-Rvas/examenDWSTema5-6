@@ -23,7 +23,7 @@ model Repartidor {
 }
 
 model Pedido {
-  id               Int        @id @default(autoincrement())
+  id               Int         @id @default(autoincrement())
   fecha            DateTime
   nombreCliente    String
   direccionCliente String

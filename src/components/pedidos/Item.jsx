@@ -20,9 +20,8 @@ export default async function Pedido({ id }) {
           {pedido.direccionCliente}
         </p>
         <p className="text-gray-700">
-          <span className="font-bold">Fecha Pedido: 
-         </span>{" "}
-         {pedido.fecha.toLocaleDateString()}
+          <span className="font-bold">Fecha Pedido:</span>{" "}
+          {pedido.fecha.toLocaleDateString()}
         </p>
         <p className="text-gray-700">
           <span className="font-bold">Id Repartidor:</span>{" "}

@@ -11,15 +11,12 @@ export async function Pedidos() {
           className="bg-slate-200 rounded-lg p-4 shadow-md mb-4 w-full md:w-1/2 lg:w-1/3"
         >
           <h2 className="text-2xl font-bold mb-2">
-            <Link
-              href={`/pedidos/${pedido.id}`}
-              className="hover:underline"
-            >
+            <Link href={`/pedidos/${pedido.id}`} className="hover:underline">
               {pedido.nombreCliente}
             </Link>
           </h2>
           <p className="text-gray-700 italic">
-            Fecha Pedido: 
+            Fecha Pedido:
             {pedido.fecha.toLocaleDateString()}
           </p>
         </li>
@@ -27,4 +24,3 @@ export async function Pedidos() {
     </ul>
   );
 }
-

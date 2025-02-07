@@ -32,4 +32,3 @@ async function PaginaRepartidor({ params, searchParams }) {
 }
 
 export default PaginaRepartidor;
-

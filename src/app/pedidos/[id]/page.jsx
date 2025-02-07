@@ -32,4 +32,3 @@ async function PaginaPedido({ params, searchParams }) {
 }
 
 export default PaginaPedido;
-
