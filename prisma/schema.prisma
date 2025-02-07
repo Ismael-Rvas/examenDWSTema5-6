@@ -9,6 +9,36 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Repartidor {
+  id       Int      @id @default(autoincrement())
+  nombre   String
+  telefono String
+  pedidos  Pedido[]
+
+  @@map("repartidores")
+}
+
+model Pedido {
+  id               Int        @id @default(autoincrement())
+  fecha            DateTime
+  nombreCliente    String
+  direccionCliente String
+  repartidorId     Int?
+  repartidor       Repartidor? @relation(fields: [repartidorId], references: [id])
+  pizzas           Pizza[]
+
+  @@map("pedidos")
+}
+
+model Pizza {
+  id      Int      @id @default(autoincrement())
+  nombre  String
+  precio  Float
+  pedidos Pedido[]
+
+  @@map("pizzas")
 }
