@@ -52,6 +52,21 @@ function PedidoInsertar() {
                 </select>
             </div>
             
+            <div className="mb-6">
+                <label htmlFor="pizzas" className="block text-gray-700 font-medium mb-2">Pizzas</label>
+                <select
+                    name="pizzas"
+                    id="pizzas"
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
+                    multiple
+                    required
+                >
+                    <option value="">Seleccione las pizzas</option>
+                    {obtenerPizzas().map(pizza => (
+                        <option key={pizza.id} value={pizza.id}>{pizza.nombre} - ${pizza.precio}</option>
+                    ))}
+                </select>
+            </div>
             <button
                 type="submit"
                 className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all focus:outline-none focus:ring-2 focus:ring-blue-500"

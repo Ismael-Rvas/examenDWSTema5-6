@@ -46,6 +46,22 @@ function PedidoModificar({ pedido }) {
                     ))}
                 </select>
             </div>
+
+            <div className="mb-6">
+                <label htmlFor="pizzas" className="block text-gray-700 font-medium mb-2">Pizzas</label>
+                <select
+                    name="pizzas"
+                    id="pizzas"
+                    multiple
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
+                >
+                    <option value="">Seleccione las pizzas</option>
+                    {pedido.pizzas.map(pizza => (
+                        <option key={pizza.id} value={pizza.id}>{pizza.nombre}</option>
+                    ))}
+                </select>
+            </div>
+            
             <button
                 type="submit"
                 className="w-full py-3 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-all focus:outline-none focus:ring-2 focus:ring-yellow-500"

@@ -52,6 +52,7 @@ export async function insertarPedido(formData) {
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
     const repartidorId = Number(formData.get('repartidor'))
+    const pizzas = (formData.get('pizzas'))
 
     await prisma.pedido.create({
         data: {
@@ -61,6 +62,11 @@ export async function insertarPedido(formData) {
             repartidor: {
                 connect: {
                     id: repartidorId
+                }
+            },
+            pizzas: {
+                connect: {
+                    id: pizzas
                 }
             }
         }
@@ -75,6 +81,7 @@ export async function modificarPedido(formData) {
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
     const repartidorId = Number(formData.get('repartidor'))
+    const pizzas = (formData.get('pizzas'))
 
     await prisma.pedido.update({
         where: {
@@ -88,7 +95,13 @@ export async function modificarPedido(formData) {
                 connect: {
                     id: repartidorId
                 }
+            },
+            pizzas: {
+                connect: {
+                    id: pizzas
+                }
             }
+
         }
     })
 

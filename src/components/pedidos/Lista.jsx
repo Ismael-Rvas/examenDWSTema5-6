@@ -1,4 +1,4 @@
-import { obtenerPedidos, obtenerRepartidores } from "@/lib/data";
+import { obtenerPedidos, obtenerRepartidores, obtenerPizzas  } from "@/lib/data";
 import Link from "next/link";
 import Modal from "@/components/Modal";
 import PedidoInsertar from "@/components/pedidos/Insertar";
@@ -9,7 +9,7 @@ import PedidoEliminar from "@/components/pedidos/Eliminar";
 export async function Pedidos() {
   const pedidos = await obtenerPedidos();
   const repartidores = await obtenerRepartidores();
-  console.log(repartidores);
+  const pizzas = await obtenerPizzas();
 
   return (
     <div className="bg-gray-100 p-8 min-h-screen">
@@ -48,7 +48,7 @@ export async function Pedidos() {
                     </p>
                   }
                 >
-                  <PedidoModificar pedido={pedido} repartidores={repartidores} />
+                  <PedidoModificar pedido={pedido} repartidores={repartidores} pizzas={pizzas} />
                 </Modal>
                 {/* Botón Eliminar */}
                 <Modal
