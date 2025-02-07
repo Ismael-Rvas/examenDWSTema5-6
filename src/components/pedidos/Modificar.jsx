@@ -1,3 +1,4 @@
+'use client'
 import { modificarPedido } from "@/lib/actions";
 function PedidoModificar({ pedido }) {
     return (
@@ -30,6 +31,20 @@ function PedidoModificar({ pedido }) {
                     defaultValue={new Date(pedido.fecha).toISOString().split('T')[0]}
                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
                 />
+            </div>
+            
+            <div className="mb-6">
+                <label htmlFor="repartidor" className="block text-gray-700 font-medium mb-2">Nombre del Repartidor</label>
+                <select
+                    name="repartidor"
+                    id="repartidor"
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
+                >
+                    <option value="">Seleccione un repartidor</option>
+                    {pedido.repartidores.map(repartidor => (
+                        <option key={repartidor.id} value={repartidor.id} selected={repartidor.id === pedido.repartidor?.id}>{repartidor.nombre}</option>
+                    ))}
+                </select>
             </div>
             <button
                 type="submit"

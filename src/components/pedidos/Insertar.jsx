@@ -1,4 +1,6 @@
+'use client'
 import { insertarPedido } from "@/lib/actions";
+import { obtenerRepartidores } from "@/lib/data";
 
 function PedidoInsertar() {
     return (
@@ -33,6 +35,21 @@ function PedidoInsertar() {
                     className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
                     required
                 />
+            </div>
+
+            <div className="mb-6">
+                <label htmlFor="repartidor" className="block text-gray-700 font-medium mb-2">Repartidor</label>
+                <select
+                    name="repartidor"
+                    id="repartidor"
+                    className="w-full p-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-all"
+                    required
+                >
+                    <option value="">Seleccione un repartidor</option>
+                    {obtenerRepartidores().map(rep => (
+                        <option key={rep.id} value={rep.id}>{rep.nombre}</option>
+                    ))}
+                </select>
             </div>
             
             <button

@@ -51,22 +51,30 @@ export async function insertarPedido(formData) {
     const fecha = new Date(formData.get('fecha'))
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
+    const repartidorId = Number(formData.get('repartidor'))
 
     await prisma.pedido.create({
         data: {
             fecha: fecha,
             nombreCliente: nombreCliente,
             direccionCliente: direccionCliente,
+            repartidor: {
+                connect: {
+                    id: repartidorId
+                }
+            }
         }
     })
 
     revalidatePath('/pedidos')
 }
+
 export async function modificarPedido(formData) {
     const id = Number(formData.get('id'))
     const fecha = new Date(formData.get('fecha'))
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
+    const repartidorId = Number(formData.get('repartidor'))
 
     await prisma.pedido.update({
         where: {
@@ -76,6 +84,11 @@ export async function modificarPedido(formData) {
             fecha: fecha,
             nombreCliente: nombreCliente,
             direccionCliente: direccionCliente,
+            repartidor: {
+                connect: {
+                    id: repartidorId
+                }
+            }
         }
     })
 
