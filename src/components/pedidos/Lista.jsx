@@ -19,7 +19,8 @@ export async function Pedidos() {
             </Link>
           </h2>
           <p className="text-gray-700 italic">
-            {pedido.fecha.toLocaleString()}
+            Fecha Pedido: 
+            {pedido.fecha.toLocaleDateString()}
           </p>
         </li>
       ))}

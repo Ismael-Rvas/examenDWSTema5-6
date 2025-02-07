@@ -17,6 +17,11 @@ export async function Pizzas() {
             >
               {pizza.nombre}
             </Link>
+
+            <p className="text-gray-700 italic">
+            Precio:  
+             {pizza.precio}€
+          </p>
           </h2>
         </li>
       ))}

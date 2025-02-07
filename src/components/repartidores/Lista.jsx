@@ -18,7 +18,7 @@ export async function Repartidores() {
               {repartidor.nombre}
             </Link>
           </h2>
-          <p className="text-gray-700 italic">{repartidor.telefono}</p>
+          <p className="text-gray-700 italic">Teléfono: {repartidor.telefono}</p>
         </li>
       ))}
     </ul>
