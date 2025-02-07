@@ -21,7 +21,7 @@ export async function Pedidos() {
           </p>
         }
       >
-        <PedidoInsertar />
+        <PedidoInsertar repartidores={repartidores} pizzas={pizzas}/>
       </Modal>
 
       <ul className="flex flex-col items-center justify-center mt-10 space-y-4">

@@ -27,6 +27,11 @@ export default async function Pedido({ id }) {
           <span className="font-bold">Id Repartidor:</span>{" "}
           {pedido.repartidorId}
         </p>
+        <p className="text-gray-700">
+          Pizzas pedido:{" "}
+          {pedido.pizzas?.map((pizza) => pizza.nombre).join(", ") || "Ninguna"}
+        </p>
+
       </div>
     </div>
   );

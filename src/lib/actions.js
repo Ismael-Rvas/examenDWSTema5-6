@@ -47,42 +47,48 @@ export async function eliminarRepartidor(formData) {
 }
 
 //  ------------------------ PEDIDOS ------------------------
-export async function insertarPedido(formData) {
+export async function insertarPedido(prevState, formData) {
     const fecha = new Date(formData.get('fecha'))
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
-    const repartidorId = Number(formData.get('repartidor'))
-    const pizzas = (formData.get('pizzas'))
+    const repartidorId = formData.get('repartidorId')
 
+    const pizzaIDs = await prisma.pizza.findMany({
+        select: {
+            id: true
+        }
+    })
+    const connect = pizzaIDs.filter(pizza => formData.get(`pizza${pizza.id}`) !== null)
     await prisma.pedido.create({
         data: {
             fecha: fecha,
             nombreCliente: nombreCliente,
             direccionCliente: direccionCliente,
-            repartidor: {
-                connect: {
-                    id: repartidorId
-                }
-            },
+            repartidorId: repartidorId,
             pizzas: {
-                connect: {
-                    id: pizzas
-                }
-            }
+                connect: connect,
+            },
         }
     })
-
     revalidatePath('/pedidos')
+    return { success: 'El pedido se inserto correctamente' }
 }
 
-export async function modificarPedido(formData) {
+export async function modificarPedido(prevState, formData) {
     const id = Number(formData.get('id'))
     const fecha = new Date(formData.get('fecha'))
     const nombreCliente = formData.get('nombreCliente')
     const direccionCliente = formData.get('direccionCliente')
-    const repartidorId = Number(formData.get('repartidor'))
-    const pizzas = (formData.get('pizzas'))
+    const repartidorId = Number(formData.get('repartidorId'))
 
+    const pizzaIDs = await prisma.pizza.findMany({
+        select: {
+            id: true
+        }
+    })
+    const connect = pizzaIDs.filter(pizza => formData.get(`pizza${pizza.id}`) !== null)
+    const disconnect = pizzaIDs.filter(pizza => formData.get(`pizza${pizza.id}`) === null)
+    
     await prisma.pedido.update({
         where: {
             id: id
@@ -91,33 +97,25 @@ export async function modificarPedido(formData) {
             fecha: fecha,
             nombreCliente: nombreCliente,
             direccionCliente: direccionCliente,
-            repartidor: {
-                connect: {
-                    id: repartidorId
-                }
-            },
+            repartidorId: repartidorId,
             pizzas: {
-                connect: {
-                    id: pizzas
-                }
+                connect: connect,
+                disconnect: disconnect
             }
-
         }
     })
-
     revalidatePath('/pedidos')
+    return { success: 'El pedido se modifico correctamente' }
 }
 
-export async function eliminarPedido(formData) {
+export async function eliminarPedido(prevState, formData) {
     const id = Number(formData.get('id'))
-
     await prisma.pedido.delete({
         where: {
             id: id
         }
     })
-
-    revalidatePath('/pedidos')
+    return { success: 'El pedido se elimino' }
 }
 
 //  ------------------------ PIZZAS -----------------------
